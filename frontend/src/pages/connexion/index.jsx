@@ -31,18 +31,19 @@ export default function Connexion() {
   };
   return (
     <>
+    <div className={styles.blocForm}>
       <h1 className={styles.title}>Page de connexion</h1>
       <form className={styles.form} onSubmit={handleSubmit(onsubmit)}>
         <div>
           <label htmlFor="email">Email</label>
-          <input type="email" {...register("email", { required: true })} />
-          {errors.email && <p className={styles.error}>Email requis</p>}
+          <input type="email" {...register("email", { required: true })} placeholder="cathydaz@gmail.com" />
+          {errors.email && <p className={styles.error}>Email requis</p>} 
         </div>
         <div>
           <label htmlFor="password">Mot de passe</label>
           <input
             type="password"
-            {...register("password", { required: true, minLength: 6 })}
+            {...register("password", { required: true, minLength: 6 })} placeholder="********"
           />
           {errors.password && (
             <p className={styles.error}>
@@ -52,6 +53,7 @@ export default function Connexion() {
         </div>
         <button type="submit">Connexion</button>
       </form>
+      </div>
     </>
   );
 }

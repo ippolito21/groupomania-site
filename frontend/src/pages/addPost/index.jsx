@@ -47,30 +47,35 @@ export default function AddPost() {
     }
   }, [currentImage]);
   return (
+    <div className={styles.blocPublication}>
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label htmlFor="description">Description</label>
         <textarea
           id="description"
-          {...register("description", { required: true })}
+          {...register("description", { required: true })} placeholder="Écrivez un commentaire..."
         ></textarea>
       </div>
+      {previewSrc &&
+        <div className={styles.blocImage}>
+            <img src={previewSrc}alt="" />
+        </div>
+      }
+      <div className={styles.boutons}>
       <div>
         <label htmlFor="image">Image</label>
         <input
           type="file"
           {...register("image", { required: true })}
-          onChange={(e)=> onChangeImage(e)}
-         
+          onChange={(e)=> onChangeImage(e)} className={styles.boutonImg}
         />
       </div>
-      {previewSrc &&
-        <div>
-            <img src={previewSrc}alt="" />
-        </div>
-      }
-      <button>publier</button>
+      <button>Publier</button>
+      </div>
+     
+      
     </form>
+    </div>
   );
 }
 

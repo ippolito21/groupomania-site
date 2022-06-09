@@ -1,0 +1,75 @@
+
+.blocPublication{
+    width: 50%;
+    min-width: 370px;
+    margin: 2rem auto;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.blocPublication:hover{
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.07);
+    transform: translateY(-5px);
+}
+
+.blocPublication label{
+    display: none;
+}
+
+.blocPublication .boutons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0 15px;
+    margin: 10px 0;
+}
+
+.blocPublication .boutons button{
+    height: 80%;
+    padding: 0 35px;
+    background-color: #fff;
+    border: 2px solid #4E5166;
+    color:  #4E5166;
+    border-radius: 30px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 800;
+    transition: .3s;
+}
+
+.blocPublication .boutons button:hover{
+    background-color: #4E5166;
+    border: 2px solid #4E5166;
+    color:  #fff;
+    cursor: pointer;
+}
+
+/* bouton de l'image qu'on ne peut pas styliser */
+.blocPublication .boutons .boutonImg{
+    border: 0px solid red;
+}
+
+.blocPublication textarea{
+    width: 100%;
+    height: 100px;
+    border: none;
+    margin-bottom: -4px;
+    border-radius: 15px 15px 0 0;
+    padding: 15px;
+    font-family: 'Lato', sans-serif;
+    resize: none;
+}
+
+
+.blocPublication textarea:focus{
+    outline: #ffd7d7 solid 1px;
+}
+
+.blocPublication .blocImage img{
+    width: 200px;
+    margin: 15px 15px 0 15px;
+    border-radius: 10px;
+}
+
