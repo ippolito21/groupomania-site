@@ -1,0 +1,4 @@
+git init => une seule fois
+git add . => pour rajouter le dossier 
+git commit -m "message" =>  sauvegarder les modification en local
+git push  => publier sur Github
