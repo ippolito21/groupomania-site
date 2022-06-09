@@ -1,0 +1,15 @@
+const express = require('express')
+require('dotenv').config()
+const cors = require('cors')
+const app = express()
+const database = require('./models/database')
+const userRoutes = require('./routes/user.routes')
+const postRoutes = require('./routes/post.routes')
+const {PORT} = process.env
+
+database()
+app.use(cors())
+app.use(express.json())
+app.use("/api/auth", userRoutes)
+app.use("/api/posts", postRoutes)
+app.listen(PORT, () => console.log(PORT))
