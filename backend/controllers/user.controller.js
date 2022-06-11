@@ -16,14 +16,24 @@ const userValidation = require("../validation/user.validation");
 // ** Controlleur inscription
 exports.signup = async (req, res) => {
   // recupere le corps de la requete (données issus du front)
-  const body = req.body;
+  const body = { ...req.body };
+  const file = req.file;
+  console.log(body);
+
   const { error } = userValidation(body).userSchemaSignup;
   if (error) return res.status(400).json({ message: error.details[0].message });
   try {
     // ** Hash le mot de passe avec bcrypt
     const hash = await bcrypt.hash(body.password, 10);
     // ** on crée un nouvel utilisateur basé sur le model User
-    await new UserModel({ username : body.username, email: body.email, password: hash }).save();
+    await new UserModel({
+      username: body.username,
+      email: body.email,
+      password: hash,
+      imageUrl: `${req.protocol}://${req.get("host")}/public/images/${
+        req.file.filename
+      }`,
+    }).save();
     // *** On renvoie un reponse avec le status de 201 => created Ressource
     res.status(201).json({ message: "Compte crée!" });
   } catch (error) {

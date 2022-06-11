@@ -73,3 +73,8 @@
     border-radius: 10px;
 }
 
+.blocPublication input[type="file"] {
+    background-color: #4E5166;
+    padding: .3rem 1rem;
+    border-radius: 5px;
+}

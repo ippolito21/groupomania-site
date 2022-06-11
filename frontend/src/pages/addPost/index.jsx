@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import {useNavigate} from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import styles from "./index.module.css";
 
 export default function AddPost() {
+  const navigate = useNavigate()
   const [currentImage, setCurrentImage] = useState();
   const [previewSrc, setPreviewSrc] = useState();
   const {
@@ -11,19 +13,25 @@ export default function AddPost() {
     formState: { errors },
   } = useForm();
   async function onSubmit(data) {
+  
       const userId = localStorage.getItem("userId")
      const formData =  new FormData()
      formData.append("description", data.description)
      formData.append("image", data.image[0])
      formData.append("userId", userId)
 
-    await fetch("http://localhost:8080/api/posts/create", {
+    const response  = await fetch("http://localhost:8080/api/posts/create", {
       method: "POST",
       body: formData,
       headers: {
         Authorization : `Bearer token`
       },
     });
+
+    if(response.ok) {
+      const message = await response.json()
+      navigate("/")
+    }
   }
   function onChangeImage(e) {
      

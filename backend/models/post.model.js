@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const postSchema = mongoose.Schema({
     userId :{
         type : mongoose.Types.ObjectId,
+        ref : "user",
         required : true
     },
     description : {
@@ -19,6 +20,10 @@ const postSchema = mongoose.Schema({
     },
     usersLiked : {
         type : [mongoose.Types.ObjectId]
+    },
+    date : {
+        type : Date,
+        default : Date.now
     }
 
 })

@@ -22,6 +22,7 @@ const userSchema = mongoose.Schema({
   },
   imageUrl : {
     type: String,
+    required : true
   }
 });
 /* exporte ce schéma en tant que modèle Mongoose appelé « utilisateur », le rendant disponible pour notre application Express */

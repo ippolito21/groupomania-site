@@ -58,6 +58,10 @@ body{
     transition: .3s;
 }
 
+.blocForm input[type="file"] {
+    background-color: #4E5166;
+}
+
 .blocForm form button:hover{
     background-color: #fff;
     border: 2px solid #4E5166;
@@ -70,4 +74,13 @@ body{
 .error {
     font-size: 12px;
     color: #FD2D01 ;
+}
+
+.blocImage {
+    margin: auto;
+}
+.blocImage img{
+    width: 200px;
+    margin: 15px 15px 0 15px;
+    border-radius: 10px;
 }

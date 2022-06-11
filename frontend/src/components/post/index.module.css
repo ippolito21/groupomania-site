@@ -1,0 +1,36 @@
+.container {
+    width: 400px;
+    border:  2px dashed gold;
+    margin: 1rem auto;
+}
+
+.userInfo {
+    display:  flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    background-color: crimson;
+}
+
+.userInfo img {
+    width: 72px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+}
+
+.description {
+    padding: 0 2rem;
+}
+
+.post img {
+    width: 400px;
+}
+.likes {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.likes svg {
+    cursor: pointer;
+}

@@ -1,23 +1,32 @@
+import {useEffect, useState} from 'react'
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
 export default function Inscription() {
   const navigation = useNavigate();
+  const [currentImage, setCurrentImage] = useState();
+  const [previewSrc, setPreviewSrc] = useState();
+
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
   const onsubmit = async (data) => {
+      const formData =  new FormData()
+      formData.append("username", data.username)
+      formData.append("email", data.email)
+      formData.append("password", data.password)
+      formData.append("image", data.image[0])
+    
+
     try {
+
       const response = await fetch(
         "http://localhost:8080/api/auth/inscription",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+          body: formData,
         }
       );
       if (response.ok) {
@@ -29,6 +38,28 @@ export default function Inscription() {
       alert("Quelque chose s'est mal passé");
     }
   };
+
+  function onChangeImage(e) {
+     
+    if (e.target.files) {
+      const currentImage = e.target.files[0];
+      setCurrentImage(currentImage);
+    }
+    else {
+        return
+    }
+  }
+  useEffect(() => {
+    if (currentImage) {
+      const imageReader = new FileReader();
+      imageReader.onload = () => {
+        setPreviewSrc(imageReader.result);
+      };
+      imageReader.readAsDataURL(currentImage);
+    } else {
+      return;
+    }
+  }, [currentImage]);
   return (
     <>
     <div className={styles.blocForm}>
@@ -58,6 +89,14 @@ export default function Inscription() {
             </p>
           )}
         </div>
+        <div>
+          <input type="file" accept="image/png image/jpg image/jpeg" {...register("image", {required : true})}  onChange={(e)=> onChangeImage(e)} />
+        </div>
+        {previewSrc &&
+        <div className={styles.blocImage}>
+            <img src={previewSrc}alt="" />
+        </div>
+      }
         <button type="submit">Inscription</button>
       </form>
       </div>

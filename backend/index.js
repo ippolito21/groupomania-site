@@ -10,6 +10,7 @@ const {PORT} = process.env
 database()
 app.use(cors())
 app.use(express.json())
+app.use( "/public", express.static("./public"))
 app.use("/api/auth", userRoutes)
 app.use("/api/posts", postRoutes)
 app.listen(PORT, () => console.log(PORT))
