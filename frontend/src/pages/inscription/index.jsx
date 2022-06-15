@@ -89,14 +89,23 @@ export default function Inscription() {
             </p>
           )}
         </div>
-        <div>
-          <input type="file" accept="image/png image/jpg image/jpeg" {...register("image", {required : true})}  onChange={(e)=> onChangeImage(e)} />
-        </div>
         {previewSrc &&
         <div className={styles.blocImage}>
             <img src={previewSrc}alt="" />
         </div>
       }
+      
+        <div>
+          {/* <input type="file" accept="image/png image/jpg image/jpeg" {...register("image", {required : true})}  onChange={(e)=> onChangeImage(e)} /> */}
+      <label htmlFor="image">Image</label>
+        <input
+        id='image'
+        type="file"
+        accept='.png, .jpg, .jpeg'
+        {...register("image", {required : true})}  onChange={(e)=> onChangeImage(e)} 
+        />
+        </div>
+           
         <button type="submit">Inscription</button>
       </form>
       </div>

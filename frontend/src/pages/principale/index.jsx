@@ -7,7 +7,6 @@ export default function Home() {
   const [posts, setPosts] = useState(false);
   const [loading, setLoading] = useState(true)
 
-  console.log(posts);
   const getPosts = async () => {
     const response = await fetch("http://localhost:8080/api/posts/all");
     if (response.ok) {
@@ -18,12 +17,12 @@ export default function Home() {
   useEffect(() => {
    getPosts()
   }, []);
-
+//loader spinner
   return (
     <div className={styles.container}>
         {loading && 
-            <div style={{margin : "auto"}}>
-                <Spinner animation="border"  variant="info"/>
+            <div className={styles.loader} style={{margin : "auto"}}>
+                <Spinner animation="border"  variant="info" />
             </div>
         }
 

@@ -1,36 +1,66 @@
 .container {
-    width: 400px;
-    border:  2px dashed gold;
-    margin: 1rem auto;
+    width: 45%;
+    min-width: 370px;
+    margin: 2rem auto;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.container:hover{
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.07);
+    transform: translateY(-5px);
 }
 
 .userInfo {
-    display:  flex;
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
-    background-color: crimson;
+    padding: 15px 20px 15px 15px;
+    background-color: #ffd7d7;
+    height: 70px;
 }
 
 .userInfo img {
-    width: 72px;
+    width: 50px;
     aspect-ratio: 1;
     border-radius: 50%;
-
+    border: 2px solid #fff;
 }
 
-.description {
-    padding: 0 2rem;
+.userInfo h2 {
+    font-size: 18px;
+    transform: translateY(4px);
+    font-weight: 700;
+}
+
+.description{
+    margin: 15px;
 }
 
 .post img {
-    width: 400px;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
 }
+
 .likes {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    width: 15%;
+    min-width: 150px;
+    transform: translateY(-15px);
+    margin: 0 auto;
+    border: 3px solid #ffd7d7;
+    border-radius: 35px;
 }
+
+.likes p{
+    font-weight: 800;
+    transform: translateY(8px);
+}
+
 .likes svg {
     cursor: pointer;
 }

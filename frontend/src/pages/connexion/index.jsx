@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import {AuthenticationContext} from '../../context/authentication'
+import {setItemToLocalStorage} from '../../libs/localstorage'
 import styles from "./index.module.css";
 export default function Connexion() {
   const navigation = useNavigate();
+  const auth = useContext(AuthenticationContext)
   const {
     handleSubmit,
     register,
@@ -22,7 +26,8 @@ export default function Connexion() {
       );
       if (response.ok) {
         const data = await response.json();
-       localStorage.setItem("userId", data.userId)
+        setItemToLocalStorage("authentication", JSON.stringify(data))
+        auth.login(response.userId, response.token)
         navigation("/");
       }
     } catch (error) {

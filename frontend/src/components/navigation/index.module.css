@@ -4,12 +4,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 10%;  
+    padding: 0 100px;
+    width: 100%; 
+    overflow: hidden; 
 }
 
 .navigation img {
     width: 150px;
-    transition:  0.3s;
+    transition: 0.3s;
 }
 
 .navigation img:hover {
@@ -18,8 +20,11 @@
 
 .navigation ul {
     display: flex;
-    width: 190px;
-    justify-content: space-between;
+    transform: translateY(6px);
+}
+
+.navigation ul li {
+    margin: 0 10px;
 }
 
 .navigation ul a {
@@ -31,6 +36,7 @@
     font-size: 12px;
     transition:  0.3s;
     font-weight: 700;
+    text-decoration: none;
 }
 .navigation ul a:hover {
     transform:  scale(1.2);
@@ -50,6 +56,8 @@
     border: 2px solid #ffd7d7;
     color:  #4E5166;
 }
+
+
 
 
 

@@ -1,4 +1,10 @@
 
+.title{
+    text-align: center;
+    margin: 25px;
+    font-weight: 900;
+}
+
 .blocPublication{
     width: 50%;
     min-width: 370px;
@@ -15,8 +21,8 @@
 }
 
 .blocPublication label{
-    display: none;
-}
+    display: block;
+} 
 
 .blocPublication .boutons{
     display: flex;
@@ -73,8 +79,11 @@
     border-radius: 10px;
 }
 
+
+/*style le dernier bouton*/
 .blocPublication input[type="file"] {
     background-color: #4E5166;
     padding: .3rem 1rem;
     border-radius: 5px;
+   /* display: none; /*ajouter none pour les inputs*/
 }

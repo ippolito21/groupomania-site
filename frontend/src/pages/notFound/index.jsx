@@ -4,7 +4,7 @@ import styles from "./index.module.css";
 export default function NotFound() {
   return (
     <h1>
-      Vous vous etes Perdu <br /> <Link to={"/"}>Retourner à l'acceuil</Link>
+      Vous vous êtes Perdu <br /> <Link to={"/"}>Retournez à l'accueil</Link>
     </h1>
   );
 }
