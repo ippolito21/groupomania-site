@@ -27,7 +27,7 @@ export default function Connexion() {
       if (response.ok) {
         const data = await response.json();
         setItemToLocalStorage("authentication", JSON.stringify(data))
-        auth.login(response.userId, response.token)
+        auth.login(data.userId, data.token)
         navigation("/");
       }
     } catch (error) {

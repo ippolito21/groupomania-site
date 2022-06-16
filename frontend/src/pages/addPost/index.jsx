@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {useNavigate} from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import styles from "./index.module.css";
+import { getItemFromLocalStorage } from "../../libs/localstorage";
 
 export default function AddPost() {
   const navigate = useNavigate()
@@ -10,11 +11,10 @@ export default function AddPost() {
   const {
     handleSubmit,
     register,
-    formState: { errors },
   } = useForm();
   async function onSubmit(data) {
   
-      const userId = localStorage.getItem("userId")
+      const {userId} = getItemFromLocalStorage("authentication")
      const formData =  new FormData()
      formData.append("description", data.description)
      formData.append("image", data.image[0])
@@ -29,7 +29,7 @@ export default function AddPost() {
     });
 
     if(response.ok) {
-      const message = await response.json()
+      await response.json()
       navigate("/")
     }
   }

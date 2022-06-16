@@ -24,3 +24,22 @@ exports.createPost = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+
+exports.likes = async (req, res) => {
+  // ** On recupere l'identifiant de la sauce depuis les parametre de l'url
+  const id = req.params.id;
+  // **On extrait le like ainsi que le userId depuis le corps de la requete
+  const { like, userId } = req.body;
+  try {
+    const post = await PostModel.findById(id)
+    if(!post) return res.status(404).json({message : "Post non trouvé"})
+    if(like === 1){
+      if(!post.usersLiked.includes(userId)){
+        await PostModel.updateOne({_id : id}, { $push : {usersLiked : userId}, $inc : {likes : 1}})
+      }
+    }
+  } catch (error) {
+    
+  }
+}

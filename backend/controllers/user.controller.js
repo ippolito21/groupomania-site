@@ -79,3 +79,19 @@ exports.login = async (req, res) => {
     res.status(500).json(error);
   }
 };
+/**
+ *
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ */
+exports.profile = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await UserModel.findById(id, "-password -__v");
+    if (!user)
+      return res.status(404).json({ message: "Utilisateur non trouvé" });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

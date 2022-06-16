@@ -12,6 +12,7 @@ import {
   getItemFromLocalStorage,
   removeItemFromLocalStorage,
 } from "./libs/localstorage";
+import Profile from "./pages/profile";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -45,6 +46,7 @@ console.log(token)
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ajouter" element={<AddPost />} />
+        <Route path="/profile" element={<Profile/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     );
@@ -66,6 +68,7 @@ console.log(token)
           login: login,
           token: token,
           logout: logout,
+          userId : userId
         }}
       >
         <BrowserRouter>

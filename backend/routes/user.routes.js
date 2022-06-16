@@ -8,4 +8,7 @@ router.post("/inscription",multer, userController.signup);
 // Connexion
 router.post("/connexion", userController.login);
 
+// Profile
+router.get('/profile/:id', userController.profile)
+
 module.exports = router;

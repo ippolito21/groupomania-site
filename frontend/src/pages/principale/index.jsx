@@ -6,6 +6,7 @@ import styles from "./index.module.css";
 export default function Home() {
   const [posts, setPosts] = useState(false);
   const [loading, setLoading] = useState(true)
+  console.log(posts)
 
   const getPosts = async () => {
     const response = await fetch("http://localhost:8080/api/posts/all");
@@ -14,6 +15,9 @@ export default function Home() {
       setPosts(await response.json());
     }
   };
+  const handleLikes = (e) => {
+    console.log(e)
+  }
   useEffect(() => {
    getPosts()
   }, []);
@@ -38,6 +42,8 @@ export default function Home() {
             imageUrl={post.imageUrl}
             likes = {post.likes}
             userImage = {post.userId.imageUrl}
+            onClick = {handleLikes}
+            postId = {post._id}
           />
         ))}
     </div>
