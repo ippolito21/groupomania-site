@@ -9,7 +9,7 @@ export default function Navigation() {
   const navigate = useNavigate();
   const auth = useContext(AuthenticationContext);
   const logout = () => {
-    const result = window.confirm("Se décooncter ?");
+    const result = window.confirm("Se déconnecter ?");
     if (result) {
       auth.logout();
       navigate("/connexion");

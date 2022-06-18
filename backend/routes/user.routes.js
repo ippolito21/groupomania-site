@@ -11,4 +11,5 @@ router.post("/connexion", userController.login);
 // Profile
 router.get('/profile/:id', userController.profile)
 
+router.delete("/delete/:id", userController.delete)
 module.exports = router;

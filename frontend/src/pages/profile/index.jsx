@@ -1,16 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import {useNavigate} from "react-router-dom"
+import {AuthenticationContext} from '../../context/authentication'
 import { getItemFromLocalStorage } from "../../libs/localstorage";
 import styles from "./index.module.css";
 
 const url = "http://localhost:8080/api/auth/profile";
 
 export default function Profile() {
+  const navigate = useNavigate()
+  const auth = useContext(AuthenticationContext)
   const [profile, setProfile] = useState(false);
 
-  const onClick = () => {
+  const handleDelete = async () => {
     const confirm = window.confirm("Etes-vous sure de vouloir supprimer votre compte")
     if(confirm){
-        // ** Logique de suppresssion
+      const response = await fetch(`http://localhost:8080/api/auth/delete/${auth.userId}`, {
+        method : "DELETE",
+        headers : {
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({userId : auth.userId})
+      });
+      if(response.ok){
+        auth.logout()
+        navigate('/inscription')
+      }
     }
   }
   useEffect(() => {
@@ -37,9 +51,14 @@ export default function Profile() {
              <span> {profile.date.split("T")[1].split(".")[0]}</span>
             </p>
           </div>
-          <button onClick={onClick} className={styles.danger}>Supprimer le compte</button>
+          <button onClick={handleDelete} className={styles.danger}>Supprimer le compte</button>
         </div>
       )}
     </div>
   );
 }
+
+// ** useEffect
+/*  recupere les informations conceranant l'utilisateur connecté*/
+// ** handledelete
+/* gere la suppression du compte , au click , une popup s'affiche et si on confirme la suppression un reqte est envivoye au back et on cas de succes , on deconnecte l'utilisateur et redirige vers la page d'inscrioption */

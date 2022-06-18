@@ -1,24 +1,58 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import {AuthenticationContext} from '../../context/authentication'
 import Spinner from 'react-bootstrap/Spinner'
 import PostComponent from "../../components/post";
 import styles from "./index.module.css";
 
 export default function Home() {
+  const auth = useContext(AuthenticationContext)
   const [posts, setPosts] = useState(false);
   const [loading, setLoading] = useState(true)
-  console.log(posts)
 
-  const getPosts = async () => {
-    const response = await fetch("http://localhost:8080/api/posts/all");
-    if (response.ok) {
-        setLoading(false)
-      setPosts(await response.json());
+  const handleLikes = async (e) => {
+    const id = e.target.closest("div").dataset.id
+    const response = await fetch(`http://localhost:8080/api/posts/one/${id}`);
+    const post = await response.json()
+    if(!post.usersLiked.includes(auth.userId)){
+      const response = await fetch(`http://localhost:8080/api/posts/${id}/like`, {
+        method : "POST",
+        headers : {
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({like : 1, userId : auth.userId})
+      })
+      if(response.ok){
+        //alert("Like pris en compte")
+        const likeCount = e.target.closest('div').firstChild
+        const likeCountValue = parseInt(likeCount.textContent)
+        likeCount.textContent = likeCountValue + 1
+      }
     }
-  };
-  const handleLikes = (e) => {
-    console.log(e)
+    else if(post.usersLiked.includes(auth.userId)){
+      const response = await fetch(`http://localhost:8080/api/posts/${id}/like`, {
+        method : "POST",
+        headers : {
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({like : 0, userId : auth.userId})
+      })
+      if(response.ok){
+        //alert("annulation du like prise en compte")
+        const likeCount = e.target.closest('div').firstChild
+        const likeCountValue = parseInt(likeCount.textContent)
+        likeCount.textContent = likeCountValue - 1
+      }
+    }
   }
+
   useEffect(() => {
+    const getPosts = async () => {
+      const response = await fetch("http://localhost:8080/api/posts/all");
+      if (response.ok) {
+          setLoading(false)
+        setPosts(await response.json());
+      }
+    };
    getPosts()
   }, []);
 //loader spinner
@@ -49,3 +83,21 @@ export default function Home() {
     </div>
   );
 }
+
+
+// ** handleLikes
+/*
+  Gestion des likes et des annulations de like
+   1 -recupere le post à liker de puis le back
+   2 - on verfie au nivveau du tableau des usersLiked si l'utilisateur est inclus.
+   2.1 - s'il nest pas inclus c'est que l'utilisateur tente de liker. on envoie au back l'id de l'utilisateur ainsi la valeur 1 au niveau du like
+   2.2 - s'il est  inclus c'est que l'utilisateur tente de retirer son  like. on envoie au back l'id de l'utilisateur ainsi la valeur 0 au niveau du like
+   3 On fait une mise à jour de l'affichage du nombre de likes, soit en ajoutant 1, soit en retirant 1
+
+*/
+
+// *** useEffect
+/* 
+  on recupere la liste et on les passe au state posts via la fonctions setposts
+
+*/

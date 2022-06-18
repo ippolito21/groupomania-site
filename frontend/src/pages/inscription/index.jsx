@@ -96,7 +96,6 @@ export default function Inscription() {
       }
       
         <div>
-          {/* <input type="file" accept="image/png image/jpg image/jpeg" {...register("image", {required : true})}  onChange={(e)=> onChangeImage(e)} /> */}
       <label htmlFor="image">Image</label>
         <input
         id='image'

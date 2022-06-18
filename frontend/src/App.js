@@ -1,3 +1,4 @@
+/*app.js est le composant parent qui crée du contenu qui sera rendu grâce à index.js qui contient notre route */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useCallback, useState } from "react";
 import Navigation from "./components/navigation";
@@ -17,7 +18,6 @@ import Profile from "./pages/profile";
 function App() {
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(false);
-console.log(token)
 
   const login = useCallback((userId, token) => {
     setToken(token);
@@ -29,15 +29,13 @@ console.log(token)
     setToken(false);
   }, []);
 
-  
   useEffect(() => {
     const userAuth = getItemFromLocalStorage("authentication") || undefined;
-    console.log(userAuth, "useEffect");
-
+    /*l'useEffect se lance seulement lorsque que le state (données) changement */
+    
     if (userAuth && userAuth.token && userAuth.userId) {
       login(userAuth.userId, userAuth.token);
     }
-
   }, [login]);
   let router;
 
@@ -46,20 +44,20 @@ console.log(token)
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ajouter" element={<AddPost />} />
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     );
   } else {
     router = (
-    <Routes>
-      <Route path="/inscription" element={<Inscription />} />
-      <Route path="/connexion" element={<Connexion />} />
-    </Routes>
-
-    )
+      <Routes>
+        <Route path="/inscription" element={<Inscription />} />
+        <Route path="/connexion" element={<Connexion />} />
+      </Routes>
+    );
   }
-
+  /*envelopper notre appl avec AuthContext surveille que chaque fois que quelque chose change 
+  dans le contexte le composant enfant qui utilise ce context changent aussi*/
   return (
     <div className="App">
       <AuthenticationContext.Provider
@@ -68,7 +66,7 @@ console.log(token)
           login: login,
           token: token,
           logout: logout,
-          userId : userId
+          userId: userId,
         }}
       >
         <BrowserRouter>
@@ -81,7 +79,7 @@ console.log(token)
 }
 
 // ** BrowserRouter => Composant principale
-// ** Navigation => composant personel represantant la barre de navigation
+// ** Navigation => composant personnel represantant la barre de navigation
 // ** Routes => pour chaque route on affiche une page en particulier
 
 export default App;

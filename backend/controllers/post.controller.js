@@ -2,7 +2,12 @@ const PostModel = require("../models/post.model");
 exports.allPosts = async (req, res) => {
   const posts = await PostModel.find().populate("userId", "username imageUrl")
   .sort({'date' : -1});
-  res.json(posts);
+  res.status(200).json(posts);
+};
+
+exports.onePost = async (req, res) => {
+  const post = await PostModel.findById(req.params.id)
+  res.status(200).json(post);
 };
 
 exports.createPost = async (req, res) => {
@@ -37,9 +42,16 @@ exports.likes = async (req, res) => {
     if(like === 1){
       if(!post.usersLiked.includes(userId)){
         await PostModel.updateOne({_id : id}, { $push : {usersLiked : userId}, $inc : {likes : 1}})
+        res.status(201).json({message : "like pris en compte"});
+      }
+    }
+    if(like === 0){
+      if(post.usersLiked.includes(userId)){
+        await PostModel.updateOne({_id : id}, { $pull : {usersLiked : userId}, $inc : {likes : -1}})
+        res.status(201).json({message : "annulation de like prise en compte"});
       }
     }
   } catch (error) {
-    
+    res.status(500).json(error);
   }
 }
