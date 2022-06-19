@@ -21,6 +21,7 @@
 .navigation ul {
     display: flex;
     transform: translateY(6px);
+    padding: 0;
 }
 
 .navigation ul li {
@@ -57,6 +58,11 @@
     color:  #4E5166;
 }
 
+#deconnexion{
+    color: #ffd7d7;
+    transform: translate(10px, 5px);
+}
+
 
 
 
@@ -64,5 +70,12 @@
 @media screen and (max-width: 600px) {
     .navigation {
         padding: 0 20px 0 5px;  
+
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .navigation {
+         
     }
 }

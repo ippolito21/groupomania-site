@@ -39,13 +39,12 @@ export default function Profile() {
 
   return (
     <div className={styles.container}>
-      <h1>Page de profil</h1>
       {profile && (
         <div className={styles.card}>
           <img src={profile.imageUrl} alt="de profil" />
-          <h2>Nom d'utilisateur <span>{profile.username}</span></h2>
+          <h2><span>{profile.username}</span></h2>
           <div className={styles.info}>
-            <p>Email : {profile.email}</p>
+            <p>{profile.email}</p>
             <p>
               Compte crée le <span>{profile.date.split("T")[0]}</span> à
              <span> {profile.date.split("T")[1].split(".")[0]}</span>

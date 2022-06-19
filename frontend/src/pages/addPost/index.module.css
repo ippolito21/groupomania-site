@@ -82,8 +82,9 @@
 
 /*style le dernier bouton*/
 .blocPublication input[type="file"] {
-    background-color: #4E5166;
-    padding: .3rem 1rem;
-    border-radius: 5px;
+
+    width: 135px;
+    border-radius: 0px;
    /* display: none; /*ajouter none pour les inputs*/
 }
+

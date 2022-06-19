@@ -38,10 +38,10 @@ export default function Navigation() {
         )}
         {auth.isLoggedIn && (
           <li>
-            <Link to="/profile">Profile</Link>
+            <Link to="/profile">Profil</Link>
           </li>
         )}
-        {auth.isLoggedIn && <FiLogOut title="Deconnexion" onClick={logout} />}
+        {auth.isLoggedIn && <FiLogOut title="Deconnexion" onClick={logout} id={styles.deconnexion} />}
       </ul>
     </nav>
   );

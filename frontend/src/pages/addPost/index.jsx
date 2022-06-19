@@ -68,7 +68,7 @@ export default function AddPost() {
           )}
           <div className={styles.boutons}>
             <div>
-              <label htmlFor="image">Image</label>
+              <label htmlFor="image"></label>
               <input
                 type="file"
                 id="image"

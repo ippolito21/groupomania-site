@@ -57,9 +57,15 @@ body {
   font-size: 16px;
   transition: 0.3s;
 }
+
 /*style du bouton image*/
 .blocForm input[type="file"] {
-  background-color: #4e5166;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  width: 145px!important;
+  min-width: 145px;
+  transform: translateX(-5px);
   /*ajout display none fait disparâtre le bouton*/
 }
 

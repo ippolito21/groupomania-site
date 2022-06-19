@@ -1,34 +1,62 @@
-
-.container h1 {
-    text-align: center;
-}
-
 .card {
     width: 50%;
-    margin:  1rem auto;
+    margin: 150px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(204, 127, 113);
-    padding: 1rem;
+    background-color: #fff;
+    padding: 120px 35px 35px 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    position: relative;
+    min-width: 370px;
 }
 .card img {
     width: 200px;
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
+    position: absolute;
+    top: -100px;
+    border: 12px solid #ffd7d7;
 }
 
-.card span {
-    font-size: 22px;
+.card h2{
+    font-size: 40px;
+    font-weight: 900;
 }
 
 .info {
  display: flex;
  flex-direction: column;
-    align-items: center;
+ align-items: center;
+}
+
+.info p:nth-child(2){
+    opacity: 0.5;
+    font-size: 15px;
+    margin: 20px;
 }
 
 .danger {
-    background-color: crimson;
+    background-color: #ffd7d7;
+    border: 2px solid #ffd7d7;
+    color:  #4E5166;
+    padding: .5rem 1.5rem;
+    border-radius: 25px;
+    font-size: 17px;
+    transition:  0.3s;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+    .card img{
+        width: 150px;
+        height: 150px;
+    }
+
+    .card{
+        padding: 60px 35px 35px 35px;
+    }
 }

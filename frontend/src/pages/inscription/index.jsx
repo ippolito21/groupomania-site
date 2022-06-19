@@ -96,7 +96,7 @@ export default function Inscription() {
       }
       
         <div>
-      <label htmlFor="image">Image</label>
+      <label htmlFor="image">Photo de profil</label>
         <input
         id='image'
         type="file"

@@ -88,8 +88,8 @@ export default function Home() {
 // ** handleLikes
 /*
   Gestion des likes et des annulations de like
-   1 -recupere le post à liker de puis le back
-   2 - on verfie au nivveau du tableau des usersLiked si l'utilisateur est inclus.
+   1 -recupere le post à liker depuis le back
+   2 - on verfie au niveau du tableau des usersLiked si l'utilisateur est inclus.
    2.1 - s'il nest pas inclus c'est que l'utilisateur tente de liker. on envoie au back l'id de l'utilisateur ainsi la valeur 1 au niveau du like
    2.2 - s'il est  inclus c'est que l'utilisateur tente de retirer son  like. on envoie au back l'id de l'utilisateur ainsi la valeur 0 au niveau du like
    3 On fait une mise à jour de l'affichage du nombre de likes, soit en ajoutant 1, soit en retirant 1
