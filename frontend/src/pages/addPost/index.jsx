@@ -9,6 +9,7 @@ export default function AddPost() {
   const [currentImage, setCurrentImage] = useState();
   const [previewSrc, setPreviewSrc] = useState();
   const { handleSubmit, register } = useForm();
+  
   async function onSubmit(data) {
     const { userId } = getItemFromLocalStorage("authentication");
     const formData = new FormData();

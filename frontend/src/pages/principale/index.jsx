@@ -45,6 +45,26 @@ export default function Home() {
     }
   }
 
+  const handleDelete =  async (e) => {
+    const postId = e.target.closest('div').dataset.id
+    const userId = auth.userId
+    const postElement =  e.target.closest('div').parentElement
+    
+    try {
+     const response =  await fetch(`http://localhost:8080/api/posts/delete/${postId}`, {
+        method : "DELETE",
+        headers : {
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({userId : userId})
+      })
+      if(response.ok){
+       postElement.remove()
+      }
+    } catch (error) {}
+    
+
+  }
   useEffect(() => {
     const getPosts = async () => {
       const response = await fetch("http://localhost:8080/api/posts/all");
@@ -78,6 +98,8 @@ export default function Home() {
             userImage = {post.userId.imageUrl}
             onClick = {handleLikes}
             postId = {post._id}
+            onDelete = {handleDelete}
+            userId = {post.userId}
           />
         ))}
     </div>

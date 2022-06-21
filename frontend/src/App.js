@@ -14,6 +14,7 @@ import {
   removeItemFromLocalStorage,
 } from "./libs/localstorage";
 import Profile from "./pages/profile";
+import UpdatePost from "./pages/updatePost";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -45,6 +46,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/ajouter" element={<AddPost />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/update/:id" element={<UpdatePost/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     );
