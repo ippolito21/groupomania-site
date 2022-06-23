@@ -15,6 +15,8 @@ import {
 } from "./libs/localstorage";
 import Profile from "./pages/profile";
 import UpdatePost from "./pages/updatePost";
+import AdminLogin from "./pages/adminLogin";
+import AdminDashboard from "./pages/adminDashboard";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -27,15 +29,20 @@ function App() {
 
   const logout = useCallback(() => {
     removeItemFromLocalStorage("authentication");
+    removeItemFromLocalStorage("admin");
     setToken(false);
   }, []);
 
   useEffect(() => {
     const userAuth = getItemFromLocalStorage("authentication") || undefined;
+    const adminAuth = getItemFromLocalStorage("admin") || undefined;
     /*l'useEffect se lance seulement lorsque que le state (données) changement */
     
     if (userAuth && userAuth.token && userAuth.userId) {
       login(userAuth.userId, userAuth.token);
+    }
+    if (adminAuth && adminAuth.token && adminAuth.userId) {
+      login(adminAuth.userId, adminAuth.token);
     }
   }, [login]);
   let router;
@@ -47,6 +54,7 @@ function App() {
         <Route path="/ajouter" element={<AddPost />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/update/:id" element={<UpdatePost/>}/>
+        <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     );
@@ -55,6 +63,7 @@ function App() {
       <Routes>
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/connexion" element={<Connexion />} />
+        <Route path="/admin/connexion" element={<AdminLogin/>}/>
       </Routes>
     );
   }

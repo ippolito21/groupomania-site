@@ -1,0 +1,83 @@
+body {
+    background-color: #ffd7d775;
+  }
+  
+  .blocForm {
+    width: 50%;
+    min-width: 370px;
+    background-color: #fff;
+    margin: 2rem auto;
+    border-radius: 15px;
+    padding: 1rem 3rem 3rem 3rem;
+    transition: 0.3s;
+  }
+  
+  .blocForm:hover {
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.07);
+    transform: translateY(-5px);
+  }
+  
+  .blocForm .title {
+    font-weight: 900;
+    text-align: center;
+  }
+  
+  .blocForm form {
+    margin: 15px 0 0 0;
+  }
+  
+  .blocForm form label {
+    display: block;
+    text-align: center;
+  }
+  
+  .blocForm form input {
+    display: block;
+    margin: 10px auto 15px auto;
+    width: 50%;
+    min-width: 220px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid #4e516654;
+    padding: 0 10px;
+    text-align: center;
+  }
+  
+  .blocForm form button {
+    display: block;
+    margin: 35px auto 0 auto;
+    background-color: #4e5166;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    border: 2px solid #4e5166;
+    transition: 0.3s;
+    font-weight: 700;
+    font-family: "Lato", sans-serif;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  
+
+  .blocForm form button:hover {
+    background-color: #fff;
+    border: 2px solid #4e5166;
+    color: #4e5166;
+    cursor: pointer;
+  }
+  
+  .error {
+    font-size: 12px;
+    color: #fd2d01;
+  }
+  
+  .blocImage {
+    margin: 0 auto;
+  }
+  .blocImage img {
+    width: 200px;
+    margin: 30px auto 15px auto;
+    display: block;
+    border-radius: 10px;
+  }
+  

@@ -6,6 +6,7 @@ import { AiFillLike, AiFillDelete } from "react-icons/ai";
 import {GrUpdate} from 'react-icons/gr'
 export default function PostComponent(props) {
   const auth = useContext(AuthenticationContext);
+  const adminStorage =JSON.parse( localStorage.getItem("admin"))
   return (
     <div>
       <div className={styles.container}>
@@ -21,12 +22,13 @@ export default function PostComponent(props) {
       <div className={styles.likes} data-id={props.postId}>
         <p>{props.likes}</p>
         <AiFillLike title="like" onClick={props.onClick} color="green" size={20} />
-        {props.userId._id === auth.userId && (
+        {(props.userId._id === auth.userId  || adminStorage) && (
           <AiFillDelete title="supprimer" onClick={props.onDelete} color="tomato" size={20} />
         )}
-         {props.userId._id === auth.userId && (
+         {(props.userId._id === auth.userId  || adminStorage) && (
           <Link to={`/update/${props.postId}`} ><GrUpdate title="mettre à jour"  color="dodgerblue" size={20}></GrUpdate></Link>
         )}
+       
       </div>
     </div>
   );

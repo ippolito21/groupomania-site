@@ -12,19 +12,29 @@ export default function UpdatePost() {
     const { handleSubmit, register } = useForm();
 
     async function onSubmit(data) {
-        const { userId } = getItemFromLocalStorage("authentication");
+        const userStorage = getItemFromLocalStorage("authentication");
+        const adminStorage = getItemFromLocalStorage("admin");
         const formData = new FormData();
         formData.append("description", data.description);
         formData.append("image", data.image[0]);
-        formData.append("userId", userId);
-    
-        const response = await fetch(`http://localhost:8080/api/posts/update/${params.id}`, {
+        formData.append("userId", userStorage?.userId || adminStorage?.userId);
+        
+        let ENDPOINT;
+        if(userStorage && userStorage.userId && userStorage.token) {
+          ENDPOINT = `http://localhost:8080/api/posts/update/${params.id}`
+        }
+        else if (adminStorage && adminStorage.userId && adminStorage.token){
+          ENDPOINT = `http://localhost:8080/api/admin/posts/update/${params.id}`
+          console.log(ENDPOINT, "endpoint")
+          //  /api/admin/posts/update/:id
+        }
+        const response = await fetch(ENDPOINT, {
           method: "PUT",
           body: formData,
           headers: {
-            Authorization: `Bearer token`,
+           // Authorization: `Bearer token`,
           },
-          mode : "cors"
+         
         });
     
         if (response.ok) {

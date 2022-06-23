@@ -14,9 +14,9 @@ exports.onePost = async (req, res) => {
 
 exports.createPost = async (req, res) => {
   const body = req.body;
-  // on recupere les données relatives à la sauce comme le names , description etc...
+  // on recupere les données relatives au post comme le names , description etc...
   try {
-    // on crée un nouveau document sauce avec les  données de la sauce ainsi que l'imageUrl
+    // on crée un nouveau document post avec les  données de la post ainsi que l'imageUrl
     await new PostModel({
       ...body,
       imageUrl: `${req.protocol}://${req.get("host")}/public/images/${
@@ -78,7 +78,7 @@ exports.delete = async (req, res) => {
 };
 
 exports.likes = async (req, res) => {
-  // ** On recupere l'identifiant de la sauce depuis les parametre de l'url
+  // ** On recupere l'identifiant des likes depuis les parametre de l'url
   const id = req.params.id;
   // **On extrait le like ainsi que le userId depuis le corps de la requete
   const { like, userId } = req.body;

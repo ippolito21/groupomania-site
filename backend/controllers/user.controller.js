@@ -68,7 +68,7 @@ exports.login = async (req, res) => {
     // Si ça renvoie false on retoure une erreur 401 avec le message Connexion
     if (!isPasswordMatching)
       return res.status(401).json({ message: "Connexion non autorisée" });
-    // *** Si tout est bon on renvoie un token de connexion, extrait l'id de l'utisateur qui est encodé dans le token
+    // *** Si tout est bon on renvoie un token de connexion, extrait l'id de l'utilisateur qui est encodé dans le token
     res.status(200).json({
       userId: user._id,
       token: jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
