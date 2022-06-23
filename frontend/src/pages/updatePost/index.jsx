@@ -79,6 +79,12 @@ export default function UpdatePost() {
                 {...register("description", { required: true })}
               ></textarea>
             </div>
+
+            {previewSrc && (
+            <div className={styles.blocImage}>
+              <img src={previewSrc} alt="" />
+            </div>
+          )}
             
             <div className={styles.boutons}>
               <div>
@@ -89,13 +95,9 @@ export default function UpdatePost() {
                   className={styles.boutonImg}
                   {...register("image", { required: true })}
                   onChange={(e) => onChangeImage(e)}
-                />
+                /> 
               </div>
-              {previewSrc && (
-            <div className={styles.blocImage}>
-              <img src={previewSrc} alt="" />
-            </div>
-          )}
+              
               <button>Modifier</button>
             </div>
           </form>

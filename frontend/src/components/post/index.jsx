@@ -26,7 +26,7 @@ export default function PostComponent(props) {
           <AiFillDelete title="supprimer" onClick={props.onDelete} color="tomato" size={20} />
         )}
          {(props.userId._id === auth.userId  || adminStorage) && (
-          <Link to={`/update/${props.postId}`} ><GrUpdate title="mettre à jour"  color="dodgerblue" size={20}></GrUpdate></Link>
+          <Link to={`/update/${props.postId}`} ><GrUpdate title="mettre à jour"  color="dodgerblue" size={16}></GrUpdate></Link>
         )}
        
       </div>

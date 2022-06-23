@@ -61,7 +61,7 @@ export default function AdminLogin() {
           />
         </div>
 
-        <button type="submit">Connexion Adminstrateur</button>
+        <button type="submit">Connexion Administrateur</button>
       </form>
     </div>
   );
