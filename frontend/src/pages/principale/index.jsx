@@ -10,6 +10,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
 
   const handleLikes = async (e) => {
+    console.log(auth.token)
     const id = e.target.closest("div").dataset.id
     const response = await fetch(`http://localhost:8080/api/posts/one/${id}`);
     const post = await response.json()
@@ -17,6 +18,7 @@ export default function Home() {
       const response = await fetch(`http://localhost:8080/api/posts/${id}/like`, {
         method : "POST",
         headers : {
+          Authorization : "Bearer " + auth.token,
           "Content-Type" : "application/json"
         },
         body : JSON.stringify({like : 1, userId : auth.userId})
@@ -30,8 +32,9 @@ export default function Home() {
     }
     else if(post.usersLiked.includes(auth.userId)){
       const response = await fetch(`http://localhost:8080/api/posts/${id}/like`, {
-        method : "POST",
+        method : "post",
         headers : {
+          Authorization : "Bearer " + auth.token,
           "Content-Type" : "application/json"
         },
         body : JSON.stringify({like : 0, userId : auth.userId})
@@ -54,7 +57,8 @@ export default function Home() {
      const response =  await fetch(`http://localhost:8080/api/posts/delete/${postId}`, {
         method : "DELETE",
         headers : {
-          "Content-Type" : "application/json"
+          "Content-Type" : "application/json",
+          Authorization : `Bearer ${auth.token}`
         },
         body : JSON.stringify({userId : userId})
       })
@@ -67,7 +71,12 @@ export default function Home() {
   }
   useEffect(() => {
     const getPosts = async () => {
-      const response = await fetch("http://localhost:8080/api/posts/all");
+      const response = await fetch("http://localhost:8080/api/posts/all", {
+        method : "GET",
+        headers : {
+          Authorization : `Bearer ${auth.token}`
+        }
+      });
       if (response.ok) {
           setLoading(false)
         setPosts(await response.json());

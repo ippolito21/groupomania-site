@@ -19,6 +19,7 @@ export default function AdminDashboard() {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            Authorization : `Bearer ${adminAuth.token}`
           },
           body: JSON.stringify({ userId: adminAuth.userId }),
         }
@@ -33,7 +34,12 @@ export default function AdminDashboard() {
   };
   useEffect(() => {
     const getPosts = async () => {
-      const response = await fetch("http://localhost:8080/api/posts/all");
+      const response = await fetch("http://localhost:8080/api/posts/all", {
+        method : "GET",
+        headers : {
+          Authorization : `Bearer ${adminAuth.token}`
+        }
+      });
       if (response.ok) {
         setLoading(false);
         setPosts(await response.json());

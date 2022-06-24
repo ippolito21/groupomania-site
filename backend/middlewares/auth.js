@@ -2,6 +2,7 @@
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
 const UserModel = require("../models/user.model");
+const AdminModel = require("../models/admin.model");
 
 // Module authentification
 passport.use(
@@ -18,8 +19,10 @@ passport.use(
       try {
         // on cherche l'utilisateur dans la base de données avec l'identifiant fourni au niveau du payload
         const user = await UserModel.findById(payload.userId);
+        const admin = await AdminModel.findById(payload.userId);
+        const userOrAdmin = user || admin
         // ** Si c'est bon on retourne l'utilisateur et on permet l'acces
-        return done(null, user);
+        return done(null, userOrAdmin);
       } catch (error) {
         // ** On retourne l'erreur l'authentification à echouer
         return done(error);

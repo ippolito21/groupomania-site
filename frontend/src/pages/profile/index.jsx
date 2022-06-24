@@ -17,7 +17,8 @@ export default function Profile() {
       const response = await fetch(`http://localhost:8080/api/auth/delete/${auth.userId}`, {
         method : "DELETE",
         headers : {
-          "Content-Type" : "application/json"
+          "Content-Type" : "application/json",
+          Authorization : `Bearer ${auth.token}`
         },
         body : JSON.stringify({userId : auth.userId})
       });
@@ -30,7 +31,12 @@ export default function Profile() {
   useEffect(() => {
     const { userId } = getItemFromLocalStorage("authentication");
     const getData = async () => {
-      const response = await fetch(`${url}/${userId}`);
+      const response = await fetch(`${url}/${userId}`, {
+        method : "GET",
+        headers : {
+          Authorization : `Bearer ${auth.token}`
+        }
+      });
       const data = await response.json();
       setProfile(data);
     };

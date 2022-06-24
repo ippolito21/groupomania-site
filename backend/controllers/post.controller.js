@@ -82,6 +82,7 @@ exports.likes = async (req, res) => {
   const id = req.params.id;
   // **On extrait le like ainsi que le userId depuis le corps de la requete
   const { like, userId } = req.body;
+  console.log( userId)
   try {
     const post = await PostModel.findById(id);
     if (!post) return res.status(404).json({ message: "Post non trouvé" });

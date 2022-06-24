@@ -51,30 +51,29 @@ exports.deletePost = async (req, res) => {
 exports.updatePost = async (req, res) => {
   const { userId } = req.body;
   const { file } = req;
-
+  
   try {
     const post = await PostModel.findById(req.params.id);
     if (!post) return res.status(404).json({ message: "Post inexistant" });
     const admin = await AdminModel.findById(userId);
     if (!admin) return res.status(404).json({ message: "Admin not found" });
-   
-
+    delete req.body.userId
     const updatePost = {
       ...req.body,
+      userId : post.userId,
       imageUrl: `${req.protocol}://${req.get("host")}/public/images/${
         file.filename
       }`,
     };
-    console.log(updatePost)
-/*
+
     const image = post.imageUrl.split("images/")[1];
     await fs.unlink(`public/images/${image}`);
     await PostModel.updateOne(
       { _id: req.params.id },
       { ...updatePost, _id: req.params.id }
-    );.
-    */
-   // res.status(201).json({ message: "Post mis à jour" });
+    );
+
+    res.status(201).json({ message: "Post mis à jour" });
   } catch (error) {
     // ** Si erreur on retourne un erreur 500 avec l'erreur qui à été géneré
     res.status(500).json(error);

@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styles from "./index.module.css";
 import { getItemFromLocalStorage } from "../../libs/localstorage";
+import { AuthenticationContext } from "../../context/authentication";
 
 export default function AddPost() {
+  const auth = useContext(AuthenticationContext)
   const navigate = useNavigate();
   const [currentImage, setCurrentImage] = useState();
   const [previewSrc, setPreviewSrc] = useState();
@@ -21,7 +23,7 @@ export default function AddPost() {
       method: "POST",
       body: formData,
       headers: {
-        Authorization: `Bearer token`,
+        Authorization : `Bearer ${auth.token}`
       },
     });
 

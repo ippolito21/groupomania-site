@@ -20,7 +20,7 @@ export default function Navigation() {
   };
   return (
     <nav className={styles.navigation}>
-      <Link to={auth.isLoggedIn && ! adminStorage ? "/" : "/!#"}>
+      <Link to={auth.isLoggedIn && !adminStorage ? "/" : "/admin/dashboard"}>
         <img src={logo} alt="Logo Groupomania" />
       </Link>
       <ul>

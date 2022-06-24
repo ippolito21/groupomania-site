@@ -37,7 +37,7 @@ function App() {
     const userAuth = getItemFromLocalStorage("authentication") || undefined;
     const adminAuth = getItemFromLocalStorage("admin") || undefined;
     /*l'useEffect se lance seulement lorsque que le state (données) changement */
-    
+
     if (userAuth && userAuth.token && userAuth.userId) {
       login(userAuth.userId, userAuth.token);
     }
@@ -47,14 +47,21 @@ function App() {
   }, [login]);
   let router;
 
-  if (token) {
+  if (token && !getItemFromLocalStorage("admin")) {
     router = (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ajouter" element={<AddPost />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/update/:id" element={<UpdatePost/>}/>
-        <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
+        <Route path="/update/:id" element={<UpdatePost />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    );
+  } else if (token && getItemFromLocalStorage("admin")) {
+    router = (
+      <Routes>
+        <Route path="/update/:id" element={<UpdatePost />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     );
@@ -63,7 +70,7 @@ function App() {
       <Routes>
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/connexion" element={<Connexion />} />
-        <Route path="/admin/connexion" element={<AdminLogin/>}/>
+        <Route path="/admin/connexion" element={<AdminLogin />} />
       </Routes>
     );
   }
