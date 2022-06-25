@@ -72,6 +72,21 @@
         padding: 0 20px 0 5px;  
 
     }
+    .navigation ul {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .navigation ul a {
+       padding: 0;
+       border-radius: 0;
+       border: none !important;
+       font-size: 1.1rem;
+    }
+    .navigation ul li:nth-child(3) a {
+        padding: 0 1.5rem;
+        border-radius: 5px;
+    }
 }
 
 @media screen and (max-width: 400px) {

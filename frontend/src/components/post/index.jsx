@@ -21,7 +21,10 @@ export default function PostComponent(props) {
       </div>
       <div className={styles.likes} data-id={props.postId}>
         <p>{props.likes}</p>
-        <AiFillLike title="like" onClick={props.onClick} color="green" size={20} />
+        {(props.userId._id === auth.userId  || !adminStorage) && (
+          
+          <AiFillLike title="like" onClick={props.onClick} color="green" size={20} />
+        )}
         {(props.userId._id === auth.userId  || adminStorage) && (
           <AiFillDelete title="supprimer" onClick={props.onDelete} color="tomato" size={20} />
         )}

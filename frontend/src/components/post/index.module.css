@@ -1,6 +1,5 @@
 .container {
-    width: 45%;
-    min-width: 370px;
+    width: 500px;
     margin: 2rem auto;
     overflow: hidden;
     background-color: #fff;
@@ -63,4 +62,10 @@
 
 .likes svg {
     cursor: pointer;
+}
+
+@media screen and (max-width : 532px) {
+   .container {
+    width: auto !important;
+   }
 }

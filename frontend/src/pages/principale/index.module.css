@@ -6,3 +6,6 @@
     align-items: center;
     transform: translate(-30px);
 }
+.container {
+    padding: 0 1rem;
+}

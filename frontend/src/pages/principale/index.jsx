@@ -10,15 +10,18 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
 
   const handleLikes = async (e) => {
-    console.log(auth.token)
     const id = e.target.closest("div").dataset.id
-    const response = await fetch(`http://localhost:8080/api/posts/one/${id}`);
+    const response = await fetch(`http://localhost:8080/api/posts/one/${id}`, {
+      headers : {
+        Authorization : `Bearer ${auth.token}`
+      }
+    });
     const post = await response.json()
     if(!post.usersLiked.includes(auth.userId)){
       const response = await fetch(`http://localhost:8080/api/posts/${id}/like`, {
         method : "POST",
         headers : {
-          Authorization : "Bearer " + auth.token,
+          Authorization : `Bearer ${auth.token}`,
           "Content-Type" : "application/json"
         },
         body : JSON.stringify({like : 1, userId : auth.userId})

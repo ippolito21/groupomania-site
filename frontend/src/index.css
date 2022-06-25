@@ -14,3 +14,16 @@ ul {
   padding-left: 0;
   list-style: none;
 }
+
+svg {
+  cursor: pointer;
+}
+ /*
+::selection {
+  background-color: tomato;
+  color: whitesmoke;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+*/
