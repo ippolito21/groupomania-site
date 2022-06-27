@@ -88,3 +88,13 @@
    /* display: none; /*ajouter none pour les inputs*/
 }
 
+@media screen and (max-width : 370px) {
+    .blocPublication {
+        width: 100%;
+        min-width: 0;
+    }
+    .blocPublication button{
+        height: initial !important;
+        padding: 0 10px !important;
+    }
+}

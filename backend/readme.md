@@ -7,6 +7,8 @@
 - Renommer le fichier **dotenv** en **.env** en mettant les valeurs associées à chaque variable d'environnement
 - Lancer le serveur de developpement : **npm start**
 - Le serveur **doit** tourner sur le port **8080**
+- Si le dossier public/images n'est pas présent, il faut le créer, sans
+quoi le projet ne pourra pas fonctionner correctement
 
 ## Infos supplementaires
 
