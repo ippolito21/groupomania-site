@@ -40,6 +40,7 @@ export default function AddPost() {
       return;
     }
   }
+  
   useEffect(() => {
     if (currentImage) {
       const imageReader = new FileReader();
@@ -52,10 +53,12 @@ export default function AddPost() {
     }
   }, [currentImage]);
   return (
+    /*on récupére les données depuis le formulaire grâce à react hook from */
+    /*l'apercue de l'image est géreé par le fichier qui crée un url temporaire grâce à la methode readAsDataURL*/
     <>
       <h1 className={styles.title}>Page de publication</h1>
       <div className={styles.blocPublication}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}> 
           <div>
             <label htmlFor="description"></label>
             <textarea

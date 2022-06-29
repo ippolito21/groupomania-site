@@ -66,4 +66,4 @@ export default function Profile() {
 // ** useEffect
 /*  recupere les informations conceranant l'utilisateur connecté*/
 // ** handledelete
-/* gere la suppression du compte , au click , une popup s'affiche et si on confirme la suppression un reqte est envivoye au back et on cas de succes , on deconnecte l'utilisateur et redirige vers la page d'inscrioption */
+/* gere la suppression du compte , au click , une s'affiche et si on confirme la suppression un reqte est envivoye au back et on cas de succes , on deconnecte l'utilisateur et redirige vers la page d'inscrioption */
